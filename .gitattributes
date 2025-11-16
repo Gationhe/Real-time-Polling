@@ -1,1 +1,1 @@
-path/to/dir -linguist-vendored
+*.java linguist-language=Java
