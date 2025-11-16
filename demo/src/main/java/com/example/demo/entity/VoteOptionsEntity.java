@@ -28,7 +28,7 @@ public class VoteOptionsEntity {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "vote_count")
-    private Integer voteCount;
+    @Column(name = "vote_count", nullable = false)
+    private Integer voteCount = 0;
 
 }
