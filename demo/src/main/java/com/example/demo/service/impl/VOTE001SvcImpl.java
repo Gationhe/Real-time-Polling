@@ -51,9 +51,9 @@ public class VOTE001SvcImpl implements VOTE001Svc {
 
         List<VOTE001TranrqOption> vote001TranrqOptions = vote001Tranrq.getOptions();
         List<VoteOptionsEntity> voteOptionsEntities = new ArrayList<>();
-        VoteOptionsEntity voteOptionsEntity = new VoteOptionsEntity();
 
         for (VOTE001TranrqOption vote001TranrqOption : vote001TranrqOptions) {
+            VoteOptionsEntity voteOptionsEntity = new VoteOptionsEntity();
             voteOptionsEntity.setActivityId(activityId);
             voteOptionsEntity.setOptionSymbol(vote001TranrqOption.getOptionSymbol());
             voteOptionsEntity.setDescription(vote001TranrqOption.getDescription());
