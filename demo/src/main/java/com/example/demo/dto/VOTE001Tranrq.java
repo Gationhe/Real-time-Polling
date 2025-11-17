@@ -3,6 +3,7 @@ package com.example.demo.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ public class VOTE001Tranrq implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("userId")
-    @NotBlank(message = "userId is non-empty")
+    @NotNull(message = "userId is non-null")
     private Long userId;
 
     @JsonProperty("title")
@@ -33,11 +34,11 @@ public class VOTE001Tranrq implements Serializable {
     private String description;
 
     @JsonProperty("startTime")
-    @NotBlank(message = "startTime is non-empty")
+    @NotNull(message = "startTime is non-null")
     private LocalDateTime startTime;
 
     @JsonProperty("endTime")
-    @NotBlank(message = "endTime is non-empty")
+    @NotNull(message = "endTime is non-null")
     private LocalDateTime endTime;
 
     @Valid
