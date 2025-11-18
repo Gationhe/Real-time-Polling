@@ -32,10 +32,9 @@ public class VoteController extends BaseController {
         return vote001Svc.vote001(requestBody);
     }
 
-    @DeleteMapping(value = "/delete")
-    public Res<VOTE002Tranrs> vote002(@Valid @RequestBody Req<VOTE002Tranrq> requestBody, Errors errors) throws DataNotFoundException, DeleteFailException, InvalidInputException {
-        handleValidForDto(errors);
-        return vote002Svc.vote002(requestBody);
+    @DeleteMapping(value = "/delete/{activityId}")
+    public Res<VOTE002Tranrs> vote002(@PathVariable Long activityId) throws DataNotFoundException, DeleteFailException {
+        return vote002Svc.vote002(activityId);
     }
 
     @GetMapping(value = "/query/{activityId}")

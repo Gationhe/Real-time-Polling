@@ -1,6 +1,8 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dto.*;
+import com.example.demo.dto.Res;
+import com.example.demo.dto.ResMwHeader;
+import com.example.demo.dto.VOTE002Tranrs;
 import com.example.demo.entity.VoteActivitiesEntity;
 import com.example.demo.entity.VoteOptionsEntity;
 import com.example.demo.exception.DataNotFoundException;
@@ -28,11 +30,9 @@ public class VOTE002SvcImpl implements VOTE002Svc {
 
     @Override
     @Transactional(rollbackOn = Exception.class)
-    public Res<VOTE002Tranrs> vote002(Req<VOTE002Tranrq> requestBody) throws DataNotFoundException, DeleteFailException {
+    public Res<VOTE002Tranrs> vote002(Long activityId) throws DataNotFoundException, DeleteFailException {
 
         log.info("[VOTE-002] 刪除投票 API 啟動");
-
-        Long activityId = requestBody.getTranrq().getActivityId();
 
         VoteActivitiesEntity voteActivitiesEntity = voteActivitiesRepository.findById(activityId).orElseThrow(() -> {
             log.error("[VOTE-002] 查無 activityId 為 {} 的資料", activityId);
