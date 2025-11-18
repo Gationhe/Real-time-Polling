@@ -3,10 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.controller.advice.BaseController;
 import com.example.demo.dto.*;
 import com.example.demo.exception.*;
-import com.example.demo.service.VOTE001Svc;
-import com.example.demo.service.VOTE002Svc;
-import com.example.demo.service.VOTE003Svc;
-import com.example.demo.service.VOTE004Svc;
+import com.example.demo.service.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.Errors;
@@ -25,6 +22,8 @@ public class VoteController extends BaseController {
     private final VOTE003Svc vote003Svc;
 
     private final VOTE004Svc vote004Svc;
+
+    private final VOTE005Svc vote005Svc;
 
     @PostMapping(value = "/create")
     public Res<VOTE001Tranrs> vote001(@Valid @RequestBody Req<VOTE001Tranrq> requestBody, Errors errors) throws InsertFailException, InvalidInputException {
@@ -45,5 +44,11 @@ public class VoteController extends BaseController {
     @PatchMapping(value = "/update/{activityId}")
     public Res<VOTE004Tranrs> vote004(@PathVariable Long activityId, @RequestBody Req<VOTE004Tranrq> requestBody) throws DataNotFoundException, UpdateFailException {
         return vote004Svc.vote004(activityId, requestBody);
+    }
+
+    @PostMapping(value = "/{activityId}/create")
+    public Res<VOTE005Tranrs> vote005(@PathVariable Long activityId, @Valid @RequestBody Req<VOTE005Tranrq> requestBody, Errors errors) throws DataNotFoundException, InsertFailException, UpdateFailException, InvalidInputException {
+        handleValidForDto(errors);
+        return vote005Svc.vote005(activityId, requestBody);
     }
 }
