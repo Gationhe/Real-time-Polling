@@ -27,6 +27,8 @@ public class VoteController extends BaseController {
 
     private final VOTE006Svc vote006Svc;
 
+//    private final VOTE007Svc vote007Svc;
+
     @PostMapping(value = "/create")
     public Res<VOTE001Tranrs> vote001(@Valid @RequestBody Req<VOTE001Tranrq> requestBody, Errors errors) throws InsertFailException, InvalidInputException {
         handleValidForDto(errors);
@@ -59,4 +61,9 @@ public class VoteController extends BaseController {
         handleValidForDto(errors);
         return vote006Svc.vote006(activityId, requestBody);
     }
+
+//    @GetMapping(value = "/{activityId}/query")
+//    public Res<VOTE007Tranrs> vote007(@PathVariable Long userId) throws DataNotFoundException {
+//        return vote007Svc.vote007(activityId, userId);
+//    }
 }
