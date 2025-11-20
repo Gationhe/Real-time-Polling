@@ -7,20 +7,19 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VOTE007Tranrs implements Serializable {
+public class VOTE007TranrsActivity implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @JsonProperty("userId")
-    private Long userId;
+    @JsonProperty("activityId")
+    private Long activityId;
 
-    @JsonProperty("votedActivities")
-    private List<VOTE007TranrsActivity> votedActivities;
+    @JsonProperty("optionSymbol")
+    private String optionSymbol;
 
 }

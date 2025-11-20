@@ -27,7 +27,7 @@ public class VoteController extends BaseController {
 
     private final VOTE006Svc vote006Svc;
 
-//    private final VOTE007Svc vote007Svc;
+    private final VOTE007Svc vote007Svc;
 
     private final VOTE008Svc vote008Svc;
 
@@ -64,10 +64,10 @@ public class VoteController extends BaseController {
         return vote006Svc.vote006(activityId, requestBody);
     }
 
-//    @GetMapping(value = "/{activityId}/query")
-//    public Res<VOTE007Tranrs> vote007(@PathVariable Long userId) throws DataNotFoundException {
-//        return vote007Svc.vote007(activityId, userId);
-//    }
+    @GetMapping(value = "/query")
+    public Res<VOTE007Tranrs> vote007(@PathVariable Long userId) throws DataNotFoundException {
+        return vote007Svc.vote007(userId);
+    }
 
     @PatchMapping(value = "/{activityId}/update")
     public Res<VOTE008Tranrs> vote008(@PathVariable Long activityId, @Valid @RequestBody Req<VOTE008Tranrq> requestBody) throws DataNotFoundException, UpdateFailException {
