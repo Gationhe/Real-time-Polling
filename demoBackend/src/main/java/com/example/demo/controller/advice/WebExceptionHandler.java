@@ -18,7 +18,7 @@ public class WebExceptionHandler {
      */
     @ResponseBody
     @ExceptionHandler(InvalidInputException.class)
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Res<Object> handleInvalidInputException(InvalidInputException ex) {
         ResMwHeader resMwHeader = new ResMwHeader();
         String message = ex.getMessage();
@@ -68,6 +68,16 @@ public class WebExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Res<Object> handleDeleteFailException(DeleteFailException ex) {
         return new Res<>(new ResMwHeader(ReturnCodeAndDescEnum.DELETE_FAIL), null);
+    }
+
+    /**
+     * 時機不對異常處理
+     */
+    @ResponseBody
+    @ExceptionHandler(InvalidTimeException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Res<Object> handleInvalidTimeException(InvalidTimeException ex) {
+        return new Res<>(new ResMwHeader(ReturnCodeAndDescEnum.INVALID_TIME), null);
     }
 
     /**
