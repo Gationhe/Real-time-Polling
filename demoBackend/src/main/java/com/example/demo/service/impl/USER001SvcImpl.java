@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 import com.example.demo.dto.*;
 import com.example.demo.entity.UsersEntity;
+import com.example.demo.exception.DataRepeatedException;
 import com.example.demo.exception.InsertFailException;
 import com.example.demo.model.ReturnCodeAndDescEnum;
 import com.example.demo.repository.UsersRepository;
@@ -23,15 +24,21 @@ public class USER001SvcImpl implements USER001Svc {
 
     @Override
     @Transactional(rollbackOn = Exception.class)
-    public Res<USER001Tranrs> user001(Req<USER001Tranrq> requestBody) throws InsertFailException {
+    public Res<USER001Tranrs> user001(Req<USER001Tranrq> requestBody) throws DataRepeatedException, InsertFailException {
 
         log.info("[USER-001] 註冊 API 啟動");
 
         USER001Tranrq user001Tranrq = requestBody.getTranrq();
+        String email = user001Tranrq.getEmail();
+
+        if (usersRepository.existsByEmail(email)) {
+            log.warn("[USER-001] email 為 {} 的資料已存在於表格 users，請勿重複註冊", email);
+            throw new DataRepeatedException();
+        }
 
         UsersEntity usersEntity = new UsersEntity();
         usersEntity.setName(user001Tranrq.getName());
-        usersEntity.setEmail(user001Tranrq.getEmail());
+        usersEntity.setEmail(email);
         usersEntity.setPassword(passwordEncoder.encode(user001Tranrq.getPassword()));
         usersEntity.setRole(user001Tranrq.getRole());
 

@@ -41,6 +41,16 @@ public class WebExceptionHandler {
     }
 
     /**
+     * 資料重複異常處理
+     */
+    @ResponseBody
+    @ExceptionHandler(DataRepeatedException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Res<Object> handleDataRepeatedException(DataRepeatedException ex) {
+        return new Res<>(new ResMwHeader(ReturnCodeAndDescEnum.DATA_REPEATED), null);
+    }
+
+    /**
      * 新增資料異常處理
      */
     @ResponseBody

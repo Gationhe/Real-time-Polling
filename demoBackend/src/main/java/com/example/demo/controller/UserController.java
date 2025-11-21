@@ -5,6 +5,7 @@ import com.example.demo.dto.Req;
 import com.example.demo.dto.Res;
 import com.example.demo.dto.USER001Tranrq;
 import com.example.demo.dto.USER001Tranrs;
+import com.example.demo.exception.DataRepeatedException;
 import com.example.demo.exception.InsertFailException;
 import com.example.demo.exception.InvalidInputException;
 import com.example.demo.service.USER001Svc;
@@ -22,7 +23,7 @@ public class UserController extends BaseController {
     private final USER001Svc user001Svc;
 
     @PostMapping(value = "/register")
-    public Res<USER001Tranrs> user001(@Valid @RequestBody Req<USER001Tranrq> requestBody, Errors errors) throws InsertFailException, InvalidInputException {
+    public Res<USER001Tranrs> user001(@Valid @RequestBody Req<USER001Tranrq> requestBody, Errors errors) throws DataRepeatedException, InsertFailException, InvalidInputException {
         handleValidForDto(errors);
         return user001Svc.user001(requestBody);
     }

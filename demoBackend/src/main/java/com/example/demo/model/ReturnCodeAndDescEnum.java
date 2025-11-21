@@ -8,7 +8,8 @@ public enum ReturnCodeAndDescEnum {
     INSERT_FAIL("E003", "新增失敗"),
     DELETE_FAIL("E004", "刪除失敗"),
     DATA_NOT_FOUND("E005", "查無資料"),
-    INVALID_TIME("E006", "時機不對"),
+    DATA_REPEATED("E006", "資料重複"),
+    INVALID_TIME("E007", "時機不對"),
     S9999("9999", "其他系統異常");
 
     private String code;
