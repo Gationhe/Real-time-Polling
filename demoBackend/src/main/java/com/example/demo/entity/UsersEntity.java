@@ -22,11 +22,11 @@ public class UsersEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "email")
-    private String email; // not use in first version
+    @Column(name = "email", nullable = false)
+    private String email;
 
-    @Column(name = "password")
-    private String password; // not use in first version
+    @Column(name = "password", nullable = false)
+    private String password;
 
     @Column(name = "role", nullable = false)
     private String role;
